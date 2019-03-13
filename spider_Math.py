@@ -103,7 +103,6 @@ class Math:
             url = self.url + str(self.page)
             try:
                 html = requests.get(url, header, timeout=5)
-                cookies = html.cookies
                 if html.text == '':
                     self.error_file.write('Can not get the web file!\n')
                     exit(0)
