@@ -6,25 +6,26 @@ import requests
 import Headers
 
 
-class Physics:
+class Chemistry:
     def __init__(self):
-        self.url = 'https://phy.sustc.edu.cn/index.php?s=/List/index/cid/33/p/'
-        self.title = 'http://phy.sustc.edu.cn'
+        self.url = 'http://chem.sustc.edu.cn/index.php/dynamic/index/p/'
+        self.title = 'http://chem.sustc.edu.cn'
         self.page = 1
-        self.max_page = 21
-        if not os.path.exists('Physics'):
-            os.makedirs('Physics')
-        self.error_file = open('Physics/Error_message' + '.txt', "w", encoding='utf-8')
+        self.max_page = 9
+        if not os.path.exists('Chemistry'):
+            os.makedirs('Chemistry')
+        self.error_file = open('Chemistry/Error_message' + '.txt', "w", encoding='utf-8')
 
     def matching(self, text, file):
-        name_pattern = re.compile(r'">.*?</a>')
+        name_pattern = re.compile(r'<div class="ch_dynamic_title" style="">.*?</div>')
         url_pattern = re.compile(r'<a href=.*?">')
-        stime_pattern = re.compile(r'time">.*?</span>')
-        detail_pattern = re.compile(r'<span>.*?</span>')
+        stime_pattern = re.compile(r'<p class="ch_news_r_date "><span class="ch_dynamic_date">.*?</span>')
+        speaker_pattern = re.compile(r'演讲者：</span>.*?</span>')
         speaker = 'None'
         place = 'None'
+        stime = 'None'
         try:
-            name = re.search(name_pattern, text).group()[3:-4]
+            name = re.search(name_pattern, text).group()[39:-6]
         except AttributeError:
             self.error_file.write('Error at matching: Name is none\n')
             return
@@ -35,22 +36,15 @@ class Physics:
             self.error_file.write('Error at matching: URL is none\n')
             return
         try:
-            stime = re.search(stime_pattern, text).group()[6:-7]
-            stime = stime[:4]
+            speaker = re.search(speaker_pattern, text).group()[11:-7].replace('&nbsp;', '')
         except AttributeError:
-            self.error_file.write('Error at matching: Day is none\n')
+            self.error_file.write('Error at matching: speaker lost\n')
             return
-        m = re.findall(detail_pattern, text)
-        for item in m:
-            item = item[6:-7]
-            if item.find('演讲者') == 0:
-                speaker = item[4:]
-            else:
-                if item.find('地点') == 0:
-                    place = item[3:]
-                else:
-                    if item.find('时间') == 0:
-                        stime += ' ' + item[3:-1]
+        try:
+            stime = re.search(stime_pattern, text).group()[57:-7].replace('&nbsp;', '')
+        except AttributeError:
+            self.error_file.write('Error at matching: time lost\n')
+            return
         file.write(name + '\n')
         file.write(url + '\n')
         file.write(speaker + '\n')
@@ -58,27 +52,23 @@ class Physics:
         file.write(place + '\n\n')
 
     def recognition(self, text, file):
-        ul_pattern = re.compile(r'<ul class="list-unstyled">.*?</ul>', re.DOTALL)
-        div_pattern = re.compile(r'<div>.*?<span class="time">.*?</div>', re.DOTALL)
-        ul = None
+        div_pattern = re.compile(r'<div class="ch_dynamic_contents.*?</a>.*?</div>', re.DOTALL)
         try:
-            ul = re.search(ul_pattern, text).group()
-        except AttributeError:
-            self.error_file.write('Error at ' + str(self.page) + ' ul\n')
-        try:
-            m = re.findall(div_pattern, ul)
+            m = re.findall(div_pattern, text)
             num = 0
             for item in m:
                 num += 1
                 self.error_file.write('Matching Page' + str(self.page) + ' NO.' + str(num) + '\n')
                 self.matching(item, file)
+                # file.write(item)
+                file.write('\n')
         except AttributeError:
             self.error_file.write('Error at ' + str(self.page) + ' recognition\n')
 
     def start(self):
         header = Headers.get_header()
         while self.page <= self.max_page:
-            url = self.url + str(self.page) + '.html'
+            url = self.url + str(self.page)
             try:
                 html = requests.get(url, header, timeout=5)
                 if html.text == '':
@@ -87,9 +77,9 @@ class Physics:
             except requests.exceptions.ConnectionError as e:
                 self.error_file.write('Error At 0: ' + str(e.args) + '\n')
                 return
-            file = open('Physics/Page' + str(self.page) + '.txt', "w", encoding='utf-8')
-            # file.write(html.text)
+            file = open('Chemistry/Page' + str(self.page) + '.txt', "w", encoding='utf-8')
             self.recognition(html.text, file)
+            # file.write(html.text)
             file.close()
             self.page += 1
         self.error_file.write(time.strftime("%b %d %Y %H:%M:%S", time.localtime()))
@@ -97,5 +87,5 @@ class Physics:
 
 
 if __name__ == '__main__':
-    a = Physics()
+    a = Chemistry()
     a.start()
