@@ -60,7 +60,6 @@ class Chemistry:
                 num += 1
                 self.error_file.write('Matching Page' + str(self.page) + ' NO.' + str(num) + '\n')
                 self.matching(item, file)
-                # file.write(item)
                 file.write('\n')
         except AttributeError:
             self.error_file.write('Error at ' + str(self.page) + ' recognition\n')
@@ -79,7 +78,6 @@ class Chemistry:
                 return
             file = open('Chemistry/Page' + str(self.page) + '.txt', "w", encoding='utf-8')
             self.recognition(html.text, file)
-            # file.write(html.text)
             file.close()
             self.page += 1
         self.error_file.write(time.strftime("%b %d %Y %H:%M:%S", time.localtime()))

@@ -35,3 +35,10 @@ my_headers = [
 def get_header():
     header['User_Agent'] = random.choice(my_headers)
     return header
+
+
+def delect_bracket(o_str):
+    while o_str.find('<') > -1 and o_str.find('>') > -1:
+        o_str_temp = o_str[o_str.find('<'): o_str.find('>') + 1]
+        o_str = o_str.replace(o_str_temp, '')
+    return o_str

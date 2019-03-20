@@ -42,15 +42,15 @@ class Physics:
             return
         m = re.findall(detail_pattern, text)
         for item in m:
-            item = item[6:-7]
-            if item.find('演讲者') == 0:
-                speaker = item[4:]
+            item = Headers.delect_bracket(item)
+            if item.find('演讲者') > -1:
+                speaker = item.replace('演讲者：', '')
             else:
-                if item.find('地点') == 0:
-                    place = item[3:]
+                if item.find('地点') > -1:
+                    place = item.replace('地点：', '')
                 else:
-                    if item.find('时间') == 0:
-                        stime += ' ' + item[3:-1]
+                    if item.find('时间') > -1:
+                        stime += ' ' + item.replace('时间：', '')
         file.write(name + '\n')
         file.write(url + '\n')
         file.write(speaker + '\n')

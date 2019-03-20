@@ -17,14 +17,14 @@ class Ess:
         self.error_file = open('Ess/Error_message' + '.txt', "w", encoding='utf-8')
 
     def matching(self, text, file):
-        name_pattern = re.compile(r'">.*?</a>')
+        name_pattern = re.compile(r'html">.*?</a>')
         url_pattern = re.compile(r'<a href=.*?">')
         detail_pattern = re.compile(r'<p.*?</p>')
         speaker = 'None'
         place = 'None'
         stime = 'None'
         try:
-            name = re.search(name_pattern, text).group()[2:-4]
+            name = re.search(name_pattern, text).group()[6:-4]
             name = name[name.find('<')+1:]
         except AttributeError:
             self.error_file.write('Error at matching: Name is none\n')
@@ -37,7 +37,7 @@ class Ess:
             return
         m = re.findall(detail_pattern, text)
         for item in m:
-            item = item[item.find('>'):-4]
+            item = Headers.delect_bracket(item)
             if item.find("演讲者") > -1:
                 speaker = item[item.find("演讲者")+4:]
             if item.find("时间") > -1:

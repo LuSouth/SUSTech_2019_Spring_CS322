@@ -6,44 +6,47 @@ import requests
 import Headers
 
 
-class EE:
+class MSE:
     def __init__(self):
-        self.url = 'https://eee.sustc.edu.cn/?cat=7&cc=7&paged='
-        self.title = 'http://eee.sustc.edu.cn'
+        self.url = 'http://mse.sustc.edu.cn/cn/lecture/index/page/'
+        self.title = 'http://mse.sustc.edu.cn'
         self.page = 1
-        self.max_page = 67
-        if not os.path.exists('EE'):
-            os.makedirs('EE')
-        self.error_file = open('EE/Error_message' + '.txt', "w", encoding='utf-8')
+        self.max_page = 31
+        if not os.path.exists('MSE'):
+            os.makedirs('MSE')
+        self.error_file = open('MSE/Error_message' + '.txt', "w", encoding='utf-8')
 
     def matching(self, text, file):
-        name_pattern = re.compile(r'<h5>.*?</h5>')
-        url_pattern = re.compile(r'<a href=.*?">')
-        detail_pattern = re.compile(r'<p>.*?</p>')
+        name_pattern = re.compile(r'title=".*?"')
+        url_pattern = re.compile(r'<a href=".*?"')
+        detail_pattern = re.compile(r'<dd>.*?</dd>')
+        time_pattern = re.compile(r'<div class="time".*?</div>')
         speaker = 'None'
         place = 'None'
-        stime = 'None'
+        stime = re.search(time_pattern, text).group()
+        stime = Headers.delect_bracket(stime)
         try:
-            name = re.search(name_pattern, text).group()[4:-5]
+            name = re.search(name_pattern, text).group()[7:-1]
         except AttributeError:
             self.error_file.write('Error at matching: Name is none\n')
             return
         try:
-            url = re.search(url_pattern, text).group()[9:-2]
+            url = re.search(url_pattern, text).group()[9:-1]
+            url = self.title + url
         except AttributeError:
             self.error_file.write('Error at matching: URL is none\n')
             return
         m = re.findall(detail_pattern, text)
         for item in m:
             item = Headers.delect_bracket(item)
-            if item.find('演讲人') > -1:
-                speaker = item.replace('演讲人：', '')
+            if item.find('演讲者') > -1:
+                speaker = item.replace('演讲者：', '')
             else:
                 if item.find('地点') > -1:
                     place = item.replace('地点：', '')
                 else:
                     if item.find('时间') > -1:
-                        stime = item.replace('时间：', '')
+                        stime += ' ' + item.replace('时间：', '')
         file.write(name + '\n')
         file.write(url + '\n')
         file.write(speaker + '\n')
@@ -51,7 +54,7 @@ class EE:
         file.write(place + '\n\n')
 
     def recognition(self, text, file):
-        div_pattern = re.compile(r'<li id="xwdt1_li1">.*?</li>', re.DOTALL)
+        div_pattern = re.compile(r'<div class="section".*?</a>.*?</div>', re.DOTALL)
         try:
             m = re.findall(div_pattern, text)
             num = 0
@@ -59,8 +62,8 @@ class EE:
                 num += 1
                 self.error_file.write('Matching Page' + str(self.page) + ' NO.' + str(num) + '\n')
                 self.matching(item, file)
-        except AttributeError:
-            self.error_file.write('Error at ' + str(self.page) + ' recognition\n')
+        except AttributeError as e:
+            self.error_file.write('Error at ' + str(self.page) + ' recognition\n' + str(e.args))
 
     def start(self):
         header = Headers.get_header()
@@ -74,7 +77,7 @@ class EE:
             except requests.exceptions.ConnectionError as e:
                 self.error_file.write('Error At 0: ' + str(e.args) + '\n')
                 return
-            file = open('EE/Page' + str(self.page) + '.txt', "w", encoding='utf-8')
+            file = open('MSE/Page' + str(self.page) + '.txt', "w", encoding='utf-8')
             self.recognition(html.text, file)
             file.close()
             self.page += 1
@@ -83,5 +86,5 @@ class EE:
 
 
 if __name__ == '__main__':
-    a = EE()
+    a = MSE()
     a.start()
