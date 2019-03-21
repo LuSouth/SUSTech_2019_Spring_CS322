@@ -25,8 +25,12 @@ class MSE:
         time_pattern = re.compile(r'<div class="time".*?</div>')
         speaker = 'None'
         place = 'None'
-        stime = re.search(time_pattern, text).group()
-        stime = Headers.delect_bracket(stime)
+        try:
+            stime = re.search(time_pattern, text).group()
+            stime = Headers.delect_bracket(stime)
+        except AttributeError:
+            self.error_file.write('Missing time \n')
+            stime = 'None'
         try:
             name = re.search(name_pattern, text).group()[7:-1]
         except AttributeError:
@@ -46,9 +50,6 @@ class MSE:
             else:
                 if item.find('地点') > -1:
                     place = item.replace('地点：', '')
-                else:
-                    if item.find('时间') > -1:
-                        stime += ' ' + item.replace('时间：', '')
         content = '"' + name + '",' \
             '"' + url + '",' \
             '"' + speaker + '",' \

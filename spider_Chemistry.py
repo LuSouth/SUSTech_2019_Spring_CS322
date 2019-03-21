@@ -11,7 +11,7 @@ class Chemistry:
         self.url = 'http://chem.sustc.edu.cn/index.php/dynamic/index/p/'
         self.title = 'http://chem.sustc.edu.cn'
         self.page = 1
-        self.max_page = 9
+        self.max_page = 8
         self.department = 'Chemistry'
         if not os.path.exists(self.department):
             os.makedirs(self.department)
@@ -22,6 +22,7 @@ class Chemistry:
         name_pattern = re.compile(r'<div class="ch_dynamic_title" style="">.*?</div>')
         url_pattern = re.compile(r'<a href=.*?">')
         stime_pattern = re.compile(r'<p class="ch_news_r_date "><span class="ch_dynamic_date">.*?</span>')
+        place_pattern = re.compile(r'地.*?点：.*?</span>.*?</span>')
         speaker_pattern = re.compile(r'演讲者：</span>.*?</span>')
         speaker = 'None'
         place = 'None'
@@ -41,12 +42,19 @@ class Chemistry:
             speaker = re.search(speaker_pattern, text).group()[11:-7].replace('&nbsp;', '')
         except AttributeError:
             self.error_file.write('Error at matching: speaker lost\n')
-            return
         try:
             stime = re.search(stime_pattern, text).group()[57:-7].replace('&nbsp;', '')
         except AttributeError:
             self.error_file.write('Error at matching: time lost\n')
-            return
+        try:
+            place = re.search(place_pattern, text).group()[28:-7].replace('&nbsp;', '')
+            if place == '':
+                place = 'None'
+        except AttributeError:
+            self.error_file.write('Error at matching: place lost\n')
+        stime = stime[:-4]
+        print(stime)
+        print(place)
         content = '"' + name + '",' \
             '"' + url + '",' \
             '"' + speaker + '",' \

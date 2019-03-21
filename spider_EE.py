@@ -21,7 +21,7 @@ class EE:
     def matching(self, text, file):
         name_pattern = re.compile(r'<h5>.*?</h5>')
         url_pattern = re.compile(r'<a href=.*?">')
-        detail_pattern = re.compile(r'<p>.*?</p>')
+        detail_pattern = re.compile(r'<p>.*?</p>', re.DOTALL)
         speaker = 'None'
         place = 'None'
         stime = 'None'
@@ -37,15 +37,36 @@ class EE:
             return
         m = re.findall(detail_pattern, text)
         for item in m:
+            if item.find('地点') > -1 and item.find('时间') > -1:
+                if item.find('演讲') > -1:
+                    speaker = item[item.find('演讲')+4:item.find('时间')]
+                if item.find('20-21 Oct'):
+                    stime = '10月20日'
+                else:
+                    stime = item[item.find('时间')+3:item.find('月')+2]
+                place = item[item.find('地点')+3:]
+                continue
             item = Headers.delect_bracket(item)
-            if item.find('演讲人') > -1:
-                speaker = item.replace('演讲人：', '')
+            if item.find('演讲') > -1:
+                speaker = item[4:]
             else:
                 if item.find('地点') > -1:
                     place = item.replace('地点：', '')
                 else:
                     if item.find('时间') > -1:
-                        stime = item.replace('时间：', '')
+                        if item.find("日") > -1:
+                            stime = item[item.find("时间") + 3:item.find("日")]
+                        if item.find("号") > -1:
+                            stime = item[item.find("时间") + 3:item.find("号")]
+        if stime != 'None':
+            if stime.find('年') == -1:
+                stime = "2016年" + stime
+            if stime[-2] == '月':
+                stime = stime[:-1] + '0' + stime[-1]
+            if stime[-5] == '年':
+                stime = stime[:-4] + '0' + stime[-4:]
+            stime = stime[:4] + '-' + stime[5:7] + '-' + stime[8:]
+            stime.replace('日', '')
         content = '"' + name + '",' \
             '"' + url + '",' \
             '"' + speaker + '",' \

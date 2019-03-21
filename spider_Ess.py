@@ -43,9 +43,19 @@ class Ess:
             if item.find("演讲者") > -1:
                 speaker = item[item.find("演讲者")+4:]
             if item.find("时间") > -1:
-                stime = item[item.find("时间")+3:item.find("地点")-3]
+                if item.find("日", 0, 15) > -1:
+                    stime = item[item.find("时间")+3:item.find("日")]
+                if item.find("号", 0, 15) > -1:
+                    stime = item[item.find("时间") + 3:item.find("号")]
             if item.find("地点") > -1:
                 place = item[item.find("地点")+3:item.find("演讲者")-3]
+        if stime.find("年") == -1:
+            stime = "2018年" + stime
+        if stime[-2] == '月':
+            stime = stime[:-1] + '0' + stime[-1]
+        if stime[-5] == '年':
+            stime = stime[:-4] + '0' + stime[-4:]
+        stime = stime[:4] + '-' + stime[5:7] + '-' + stime[8:]
         content = '"' + name + '",' \
             '"' + url + '",' \
             '"' + speaker + '",' \

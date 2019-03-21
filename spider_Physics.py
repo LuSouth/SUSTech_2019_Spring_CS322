@@ -21,7 +21,7 @@ class Physics:
     def matching(self, text, file):
         name_pattern = re.compile(r'">.*?</a>')
         url_pattern = re.compile(r'<a href=.*?">')
-        stime_pattern = re.compile(r'time">.*?</span>')
+        stime_pattern = re.compile(r'<span class="time">.*?</span>')
         detail_pattern = re.compile(r'<span>.*?</span>')
         speaker = 'None'
         place = 'None'
@@ -37,11 +37,12 @@ class Physics:
             self.error_file.write('Error at matching: URL is none\n')
             return
         try:
-            stime = re.search(stime_pattern, text).group()[6:-7]
-            stime = stime[:4]
+            stime = re.search(stime_pattern, text).group()
+            stime = Headers.delect_bracket(stime)
+            stime = stime[:4] + '-' + stime[4:6] + '-' + stime[7:]
         except AttributeError:
-            self.error_file.write('Error at matching: Day is none\n')
-            return
+            self.error_file.write('Missing time\n')
+            stime = None
         m = re.findall(detail_pattern, text)
         for item in m:
             item = Headers.delect_bracket(item)
@@ -50,9 +51,6 @@ class Physics:
             else:
                 if item.find('地点') > -1:
                     place = item.replace('地点：', '')
-                else:
-                    if item.find('时间') > -1:
-                        stime += ' ' + item.replace('时间：', '')
         content = '"' + name + '",' \
             '"' + url + '",' \
             '"' + speaker + '",' \

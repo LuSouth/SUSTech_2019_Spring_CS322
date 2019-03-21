@@ -22,6 +22,7 @@ class Math:
         name_pattern = re.compile(r'">.*?</a>')
         url_pattern = re.compile(r'<a href=.*?">')
         detail_pattern = re.compile(r'<p>.*?</p>')
+        time_pattern = re.compile(r'[0-9]{4}.[0-9]{2}.[0-9]{2}')
         speaker = 'None'
         place = 'None'
         stime = 'None'
@@ -46,7 +47,12 @@ class Math:
                     place = item.replace('地点：', '')
                 else:
                     if item.find('时间') > -1:
-                        stime += ' ' + item.replace('时间：', '')
+                        stime = item.replace('时间：', '')
+                        try:
+                            stime = re.search(time_pattern, stime).group()
+                        except AttributeError:
+                            stime = None
+                            self.error_file.write('Missing time !\n')
         content = '"' + name + '",' \
             '"' + url + '",' \
             '"' + speaker + '",' \
