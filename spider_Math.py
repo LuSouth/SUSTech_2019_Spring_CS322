@@ -12,9 +12,11 @@ class Math:
         self.title = 'http://math.sustc.edu.cn'
         self.page = 1
         self.max_page = 16
-        if not os.path.exists('Math'):
-            os.makedirs('Math')
-        self.error_file = open('Math/Error_message' + '.txt', "w", encoding='utf-8')
+        self.department = 'Math'
+        if not os.path.exists(self.department):
+            os.makedirs(self.department)
+        self.error_file = open(self.department + '/Error_message' + '.txt', "w", encoding='utf-8')
+        self.file_all = open(self.department+ '/' + self.department + '_all.csv', "w", encoding='utf-8')
 
     def matching(self, text, file):
         name_pattern = re.compile(r'">.*?</a>')
@@ -45,11 +47,14 @@ class Math:
                 else:
                     if item.find('时间') > -1:
                         stime += ' ' + item.replace('时间：', '')
-        file.write(name + '\n')
-        file.write(url + '\n')
-        file.write(speaker + '\n')
-        file.write(stime + '\n')
-        file.write(place + '\n\n')
+        content = '"' + name + '",' \
+            '"' + url + '",' \
+            '"' + speaker + '",' \
+            '"' + stime + '",' \
+            '"' + self.department + '",' \
+            '"' + place + '",\n'
+        file.write(content)
+        self.file_all.write(content)
 
     def recognition(self, text, file):
         div_pattern = re.compile(r'<div class="newsAcademicListRow".*?</div>', re.DOTALL)
@@ -75,12 +80,13 @@ class Math:
             except requests.exceptions.ConnectionError as e:
                 self.error_file.write('Error At 0: ' + str(e.args) + '\n')
                 return
-            file = open('Math/Page' + str(self.page) + '.txt', "w", encoding='utf-8')
+            file = open(self.department + '/Page' + str(self.page) + '.csv', "w", encoding='utf-8')
             self.recognition(html.text, file)
             file.close()
             self.page += 1
         self.error_file.write(time.strftime("%b %d %Y %H:%M:%S", time.localtime()))
         self.error_file.close()
+        self.file_all.close()
 
 
 if __name__ == '__main__':

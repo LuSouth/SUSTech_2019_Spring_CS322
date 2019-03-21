@@ -12,9 +12,11 @@ class Ess:
         self.title = 'http://ess.sustc.edu.cn'
         self.page = 1
         self.max_page = 16
-        if not os.path.exists('Ess'):
-            os.makedirs('Ess')
-        self.error_file = open('Ess/Error_message' + '.txt', "w", encoding='utf-8')
+        self.department = 'Ess'
+        if not os.path.exists(self.department):
+            os.makedirs(self.department)
+        self.error_file = open(self.department + '/Error_message' + '.txt', "w", encoding='utf-8')
+        self.file_all = open(self.department+ '/' + self.department + '_all.csv', "w", encoding='utf-8')
 
     def matching(self, text, file):
         name_pattern = re.compile(r'html">.*?</a>')
@@ -44,11 +46,14 @@ class Ess:
                 stime = item[item.find("时间")+3:item.find("地点")-3]
             if item.find("地点") > -1:
                 place = item[item.find("地点")+3:item.find("演讲者")-3]
-        file.write(name + '\n')
-        file.write(url + '\n')
-        file.write(speaker + '\n')
-        file.write(stime + '\n')
-        file.write(place + '\n\n')
+        content = '"' + name + '",' \
+            '"' + url + '",' \
+            '"' + speaker + '",' \
+            '"' + stime + '",' \
+            '"' + self.department + '",' \
+            '"' + place + '",\n'
+        file.write(content)
+        self.file_all.write(content)
 
     def recognition(self, text, file):
         div_pattern = re.compile(r'<div class="right".*?</div>', re.DOTALL)
@@ -74,12 +79,13 @@ class Ess:
             except requests.exceptions.ConnectionError as e:
                 self.error_file.write('Error At 0: ' + str(e.args) + '\n')
                 return
-            file = open('Ess/Page' + str(self.page) + '.txt', "w", encoding='utf-8')
+            file = open(self.department + '/Page' + str(self.page) + '.txt', "w", encoding='utf-8')
             self.recognition(html.text, file)
             file.close()
             self.page += 1
         self.error_file.write(time.strftime("%b %d %Y %H:%M:%S", time.localtime()))
         self.error_file.close()
+        self.file_all.close()
 
 
 if __name__ == '__main__':

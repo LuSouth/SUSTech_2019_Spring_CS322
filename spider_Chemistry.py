@@ -12,9 +12,11 @@ class Chemistry:
         self.title = 'http://chem.sustc.edu.cn'
         self.page = 1
         self.max_page = 9
-        if not os.path.exists('Chemistry'):
-            os.makedirs('Chemistry')
-        self.error_file = open('Chemistry/Error_message' + '.txt', "w", encoding='utf-8')
+        self.department = 'Chemistry'
+        if not os.path.exists(self.department):
+            os.makedirs(self.department)
+        self.error_file = open(self.department + '/Error_message' + '.txt', "w", encoding='utf-8')
+        self.file_all = open(self.department+ '/' + self.department + '_all.csv', "w", encoding='utf-8')
 
     def matching(self, text, file):
         name_pattern = re.compile(r'<div class="ch_dynamic_title" style="">.*?</div>')
@@ -45,11 +47,14 @@ class Chemistry:
         except AttributeError:
             self.error_file.write('Error at matching: time lost\n')
             return
-        file.write(name + '\n')
-        file.write(url + '\n')
-        file.write(speaker + '\n')
-        file.write(stime + '\n')
-        file.write(place + '\n\n')
+        content = '"' + name + '",' \
+            '"' + url + '",' \
+            '"' + speaker + '",' \
+            '"' + stime + '",' \
+            '"' + self.department + '",' \
+            '"' + place + '",\n'
+        file.write(content)
+        self.file_all.write(content)
 
     def recognition(self, text, file):
         div_pattern = re.compile(r'<div class="ch_dynamic_contents.*?</a>.*?</div>', re.DOTALL)
@@ -76,12 +81,13 @@ class Chemistry:
             except requests.exceptions.ConnectionError as e:
                 self.error_file.write('Error At 0: ' + str(e.args) + '\n')
                 return
-            file = open('Chemistry/Page' + str(self.page) + '.txt', "w", encoding='utf-8')
+            file = open(self.department + '/Page' + str(self.page) + '.txt', "w", encoding='utf-8')
             self.recognition(html.text, file)
             file.close()
             self.page += 1
         self.error_file.write(time.strftime("%b %d %Y %H:%M:%S", time.localtime()))
         self.error_file.close()
+        self.file_all.close()
 
 
 if __name__ == '__main__':
