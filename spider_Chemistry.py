@@ -53,8 +53,7 @@ class Chemistry:
         except AttributeError:
             self.error_file.write('Error at matching: place lost\n')
         stime = stime[:-4]
-        print(stime)
-        print(place)
+        stime = stime[:-4]
         content = '"' + name + '",' \
             '"' + url + '",' \
             '"' + speaker + '",' \

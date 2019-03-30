@@ -18,6 +18,13 @@ class EE:
         self.error_file = open(self.department + '/Error_message' + '.txt', "w", encoding='utf-8')
         self.file_all = open(self.department+ '/' + self.department + '_all.csv', "w", encoding='utf-8')
 
+    def get_clear_time(self, url):
+        header = Headers.get_header()
+        html = requests.get(url, header, timeout=5)
+        time_pattern = re.compile(r'<span> 日期.*?</span>')
+        stime = re.search(time_pattern, html.text).group()
+        return stime[9:-7]
+
     def matching(self, text, file):
         name_pattern = re.compile(r'<h5>.*?</h5>')
         url_pattern = re.compile(r'<a href=.*?">')
@@ -40,7 +47,7 @@ class EE:
             if item.find('地点') > -1 and item.find('时间') > -1:
                 if item.find('演讲') > -1:
                     speaker = item[item.find('演讲')+4:item.find('时间')]
-                if item.find('20-21 Oct'):
+                if item.find('20-21 Oct') >= 0:
                     stime = '10月20日'
                 else:
                     stime = item[item.find('时间')+3:item.find('月')+2]
@@ -52,21 +59,7 @@ class EE:
             else:
                 if item.find('地点') > -1:
                     place = item.replace('地点：', '')
-                else:
-                    if item.find('时间') > -1:
-                        if item.find("日") > -1:
-                            stime = item[item.find("时间") + 3:item.find("日")]
-                        if item.find("号") > -1:
-                            stime = item[item.find("时间") + 3:item.find("号")]
-        if stime != 'None':
-            if stime.find('年') == -1:
-                stime = "2016年" + stime
-            if stime[-2] == '月':
-                stime = stime[:-1] + '0' + stime[-1]
-            if stime[-5] == '年':
-                stime = stime[:-4] + '0' + stime[-4:]
-            stime = stime[:4] + '-' + stime[5:7] + '-' + stime[8:]
-            stime.replace('日', '')
+        stime = self.get_clear_time(url)
         content = '"' + name + '",' \
             '"' + url + '",' \
             '"' + speaker + '",' \
