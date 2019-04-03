@@ -18,7 +18,7 @@ class Math:
         self.error_file = open(self.department + '/Error_message' + '.txt', "w", encoding='utf-8')
         self.file_all = open(self.department+ '/' + self.department + '_all.csv', "w", encoding='utf-8')
 
-    def matching(self, text, file):
+    def matching(self, text):
         name_pattern = re.compile(r'">.*?</a>')
         url_pattern = re.compile(r'<a href=.*?">')
         detail_pattern = re.compile(r'<p>.*?</p>')
@@ -53,16 +53,19 @@ class Math:
                         except AttributeError:
                             stime = None
                             self.error_file.write('Missing time !\n')
-        content = '"' + name + '",' \
-            '"' + url + '",' \
-            '"' + speaker + '",' \
-            '"' + stime + '",' \
-            '"' + self.department + '",' \
-            '"' + place + '",\n'
-        file.write(content)
+        if speaker == '':
+            speaker = 'None'
+        if place == '':
+            place = 'None'
+        content = "'" + name + "'," \
+            "'" + url + "'," \
+            "'" + speaker + "'," \
+            "'" + stime + "'," \
+            "'" + self.department + "'," \
+            "'" + place + "',\n"
         self.file_all.write(content)
 
-    def recognition(self, text, file):
+    def recognition(self, text):
         div_pattern = re.compile(r'<div class="newsAcademicListRow".*?</div>', re.DOTALL)
         try:
             m = re.findall(div_pattern, text)
@@ -70,7 +73,7 @@ class Math:
             for item in m:
                 num += 1
                 self.error_file.write('Matching Page' + str(self.page) + ' NO.' + str(num) + '\n')
-                self.matching(item, file)
+                self.matching(item)
         except AttributeError:
             self.error_file.write('Error at ' + str(self.page) + ' recognition\n')
 
@@ -86,9 +89,7 @@ class Math:
             except requests.exceptions.ConnectionError as e:
                 self.error_file.write('Error At 0: ' + str(e.args) + '\n')
                 return
-            file = open(self.department + '/Page' + str(self.page) + '.csv', "w", encoding='utf-8')
-            self.recognition(html.text, file)
-            file.close()
+            self.recognition(html.text)
             self.page += 1
         self.error_file.write(time.strftime("%b %d %Y %H:%M:%S", time.localtime()))
         self.error_file.close()
