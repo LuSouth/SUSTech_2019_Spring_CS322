@@ -53,7 +53,6 @@ class Chemistry:
         except AttributeError:
             self.error_file.write('Error at matching: place lost\n')
         stime = stime[:-4]
-        stime = stime[:-4]
         if speaker == '':
             speaker = 'None'
         if place == '':

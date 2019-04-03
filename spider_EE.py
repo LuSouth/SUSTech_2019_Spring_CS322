@@ -59,6 +59,8 @@ class EE:
             speaker = 'None'
         if place == '':
             place = 'None'
+        place = Headers.delect_bracket(place)
+        speaker = Headers.delect_bracket(speaker)
         content = "'" + name + "'," \
             "'" + url + "'," \
             "'" + speaker + "'," \
