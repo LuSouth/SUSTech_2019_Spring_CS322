@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/SUSTech_2019_Spring_CS322.iml" filepath="$PROJECT_DIR$/.idea/SUSTech_2019_Spring_CS322.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/project_spiders.iml" filepath="$PROJECT_DIR$/.idea/project_spiders.iml" />
     </modules>
   </component>
 </project>
