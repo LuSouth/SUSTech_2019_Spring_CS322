@@ -5,7 +5,9 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
-import csv
+# import csv
+import os
+
 
 class ProjectSpidersPipeline(object):
 
@@ -13,6 +15,10 @@ class ProjectSpidersPipeline(object):
         self.filename = None
 
     def open_spider(self, spider):
+        if os.path.exists(spider.name + ".csv"):
+            if os.path.exists(spider.name + ".csv.bak"):
+                os.remove(spider.name + ".csv.bak")
+            os.rename(spider.name + ".csv", spider.name + ".csv.bak")
         self.filename = open(spider.name + ".csv", "w", encoding='utf-8')
 
     def process_item(self, item, spider):
