@@ -18,7 +18,7 @@ class PhysicsSpider(scrapy.Spider):
     def parse(self, response):
         for each in response.xpath('/html/body/div[5]/div/div/ul/li'):
             item = ProjectSpidersItem()
-            item['department'] = 'Physics'
+            item['department'] = self.name
             item['name'] = each.xpath('./div/h4/a/text()').extract()[0]
             item['url'] = response.urljoin(each.xpath('./div/h4/a/@href').extract()[0])
             publish_year = each.xpath('./div/span/text()').extract()[0]
@@ -42,4 +42,4 @@ class PhysicsSpider(scrapy.Spider):
             yield item
         if self.offset < self.MAX_PAGE:
             self.offset += 1
-        yield scrapy.Request(self.url + str(self.offset) + '.html', callback=self.parse)
+            yield scrapy.Request(self.url + str(self.offset) + '.html', callback=self.parse)

@@ -19,7 +19,7 @@ class MseSpider(scrapy.Spider):
             item = ProjectSpidersItem()
             item['name'] = each.xpath("./dl/dt/a/text()").extract()[0].replace('\r\n', '').strip(' ')
             item['url'] = response.urljoin(each.xpath("./dl/dt/a/@href").extract()[0])
-            item['department'] = 'MSE'
+            item['department'] = self.name
             text_list = each.xpath("./div/text()").extract()
             if len(text_list) > 0:
                 item['stime'] = Tu.unite(text_list[0])
@@ -38,4 +38,4 @@ class MseSpider(scrapy.Spider):
             yield item
         if self.offset < self.MAX_PAGE:
             self.offset += 1
-        yield scrapy.Request(self.url + str(self.offset), callback=self.parse)
+            yield scrapy.Request(self.url + str(self.offset), callback=self.parse)

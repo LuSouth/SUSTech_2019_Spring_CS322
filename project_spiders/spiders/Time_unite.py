@@ -72,3 +72,20 @@ def ess(ori_time):
             day = ori_time[ori_time.find('月') + 1: ori_time.find('日')]
         return str(year).strip(' ') + '-' + month.strip(' ') + '-' + day.strip(' ')
     return 'None'
+
+
+def ese(ori_time):
+    if ori_time is None:
+        return 'None'
+    if ori_time.find('月') > -1:
+        if ori_time.find('年') > -1:
+            year = ori_time[:ori_time.find('年')]
+        else:
+            return 'None'
+        month = ori_time[ori_time.find('年')+1: ori_time.find('月')]
+        if ori_time.find('号') > -1:
+            day = ori_time[ori_time.find('月')+1: ori_time.find('号')]
+        else:
+            day = ori_time[ori_time.find('月') + 1: ori_time.find('日')]
+        return str(year).strip(' ') + '-' + month.strip(' ') + '-' + day.strip(' ')
+    return 'None'

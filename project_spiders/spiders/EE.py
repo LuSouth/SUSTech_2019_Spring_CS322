@@ -21,7 +21,7 @@ class EeSpider(scrapy.Spider):
             item = ProjectSpidersItem()
             item['name'] = each.xpath("./a/div[2]/h5/text()").extract()[0].replace('\r\n', '').strip(' ')
             item['url'] = response.urljoin(each.xpath("./a/@href").extract()[0])
-            item['department'] = 'EE'
+            item['department'] = self.name
             item['speaker'] = item['stime'] = item['place'] = 'None'
             detail_list = each.xpath("./a/div[2]/div")
             for detail in detail_list:
@@ -57,7 +57,7 @@ class EeSpider(scrapy.Spider):
             yield item
         if self.offset < self.MAX_PAGE:
             self.offset += 1
-        yield scrapy.Request(self.url + str(self.offset), callback=self.parse)
+            yield scrapy.Request(self.url + str(self.offset), callback=self.parse)
 
     def get_clear_time(self, url):
         html = requests.get(url, timeout=5)

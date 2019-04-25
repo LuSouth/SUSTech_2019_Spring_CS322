@@ -20,7 +20,7 @@ class EssSpider(scrapy.Spider):
             item = ProjectSpidersItem()
             item['name'] = each.xpath("./div[2]/h3/a/text()").extract()[0]
             item['url'] = response.urljoin(each.xpath("./div[2]/h3/a/@href").extract()[0])
-            item['department'] = 'ESS'
+            item['department'] = self.name
             detail = each.xpath("./div[2]/p/text()").extract()[0]
             if detail.find("演讲者") > -1:
                 item['speaker'] = detail[detail.find("演讲者") + 4:]
@@ -42,4 +42,4 @@ class EssSpider(scrapy.Spider):
             yield item
         if self.offset < self.MAX_PAGE:
             self.offset += 1
-        yield scrapy.Request(self.url + str(self.offset) + '.html', callback=self.parse)
+            yield scrapy.Request(self.url + str(self.offset) + '.html', callback=self.parse)

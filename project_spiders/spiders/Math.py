@@ -20,7 +20,7 @@ class MathSpider(scrapy.Spider):
             item = ProjectSpidersItem()
             item['name'] = each.xpath("./p[1]/a/text()").extract()[0]
             item['url'] = response.urljoin(each.xpath("./p[1]/a/@href").extract()[0])
-            item['department'] = 'Math'
+            item['department'] = self.name
             try:
                 index = 2
                 item['speaker'] = item['place'] = item['stime'] = 'None'
@@ -38,4 +38,4 @@ class MathSpider(scrapy.Spider):
             yield item
         if self.offset < self.MAX_PAGE:
             self.offset += 1
-        yield scrapy.Request(self.url + str(self.offset), callback=self.parse)
+            yield scrapy.Request(self.url + str(self.offset), callback=self.parse)

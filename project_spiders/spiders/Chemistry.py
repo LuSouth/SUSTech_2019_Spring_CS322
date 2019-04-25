@@ -21,7 +21,7 @@ class ChemistrySpider(scrapy.Spider):
             item = ProjectSpidersItem()
             item['name'] = each.xpath("./a/div[2]/div[1]/text()").extract()[0]
             item['url'] = response.urljoin(each.xpath("./a/@href").extract()[0])
-            item['department'] = 'Chemistry'
+            item['department'] = self.name
             text_list = each.xpath("./a/div[2]/p/span/text()").extract()
             if len(text_list) > 0:
                 item['stime'] = Tu.unite(text_list[0])
@@ -40,4 +40,4 @@ class ChemistrySpider(scrapy.Spider):
             yield item
         if self.offset < self.MAX_PAGE:
             self.offset += 1
-        yield scrapy.Request(self.url + str(self.offset) + '.html', callback=self.parse)
+            yield scrapy.Request(self.url + str(self.offset) + '.html', callback=self.parse)
