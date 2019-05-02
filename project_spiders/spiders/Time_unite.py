@@ -20,7 +20,10 @@ def unite(ori_time):
     if ori_time is None:
         return 'None'
     data_pattern = re.compile(r'[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}')
-    new_time = re.search(data_pattern, ori_time).group()
+    try:
+        new_time = re.search(data_pattern, ori_time).group()
+    except AttributeError:
+        return 'None'
     if new_time[-2] == '0' or new_time[-2] == ' ':
         new_time = new_time[:-2] + new_time[-1]
     if new_time[5] == '0' or new_time[5] == ' ':
@@ -88,4 +91,76 @@ def ese(ori_time):
         else:
             day = ori_time[ori_time.find('月') + 1: ori_time.find('日')]
         return str(year).strip(' ') + '-' + month.strip(' ') + '-' + day.strip(' ')
+    return 'None'
+
+
+def bme(ori_time, year):
+    if ori_time.find('月') > -1:
+        if ori_time.find('年') > -1:
+            year = ori_time[:ori_time.find('年')]
+        month = ori_time[ori_time.find('年')+1: ori_time.find('月')]
+        if ori_time.find('号') > -1:
+            day = ori_time[ori_time.find('月')+1: ori_time.find('号')]
+        else:
+            if ori_time.find('日') > -1:
+                day = ori_time[ori_time.find('月') + 1: ori_time.find('日')]
+            else:
+                day = ori_time[ori_time.find('月') + 1: ori_time.find('（')]
+        return str(year).strip(' ') + '-' + month.strip(' ') + '-' + day.strip(' ')
+    for item in data_change.keys():
+        if ori_time.find(item) != -1:
+            month = data_change[item]
+            day_pattern = re.compile(r'[0-9]{1,2}[^0-9ap:]')
+            day = re.search(day_pattern, ori_time).group()[:-1]
+            return str(year).strip(' ') + '-' + str(month) + '-' + day.strip(' ')
+    return 'None'
+
+
+def bio(ori_time, de_year):
+    month = ori_time[:ori_time.find('月')]
+    day = ori_time[ori_time.find('月')+1: ori_time.find('日')]
+    return str(de_year)+ '-' + month.strip(' ') + '-' + day.strip(' ')
+
+
+def fin(ori_time):
+    ori_time.replace(' ', '')
+    if ori_time is None:
+        return 'None'
+    if ori_time.find('月') > -1:
+        if ori_time.find('年') > -1:
+            year = ori_time[:ori_time.find('年')]
+        else:
+            return 'None'
+        month = ori_time[ori_time.find('年')+1: ori_time.find('月')]
+        if ori_time.find('号') > -1:
+            day = ori_time[ori_time.find('月')+1: ori_time.find('号')]
+        else:
+            day = ori_time[ori_time.find('月') + 1: ori_time.find('日')]
+        return str(year).strip(' ') + '-' + month.strip(' ') + '-' + day.strip(' ')
+    pattern = re.compile(r'[0-9]{4}.[0-9]{1,2}.[0-9]{1,2}')
+    try:
+        tmp = re.search(pattern, ori_time).group()
+        return tmp.replace('.', '-')
+    except AttributeError:
+        pass
+    return 'None'
+
+
+def med(ori_time):
+    if ori_time is None:
+        return 'None'
+    if ori_time.find('月') > -1:
+        if ori_time.find('年') > -1:
+            year = ori_time[:ori_time.find('年')]
+        else:
+            return 'None'
+        month = ori_time[ori_time.find('年')+1: ori_time.find('月')]
+        if ori_time.find('号') > -1:
+            day = ori_time[ori_time.find('月')+1: ori_time.find('号')]
+        else:
+            day = ori_time[ori_time.find('月') + 1: ori_time.find('日')]
+        return str(year).strip(' ') + '-' + month.strip(' ') + '-' + day.strip(' ')
+    if ori_time.find('/') != -1:
+        ori_time = ori_time.replace('/', '-')
+        return unite(ori_time)
     return 'None'

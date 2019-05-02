@@ -2,19 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e5e36c4-9000-4e5a-af9d-adfd3015caa0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/project_spiders/spiders/CSE.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_spiders/spiders/ESE.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_spiders/spiders/Ocean.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project_spiders/spiders/BIO.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project_spiders/spiders/BME.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project_spiders/spiders/FIN.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project_spiders/spiders/MAE.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project_spiders/spiders/MED.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project_spiders/spiders/MEE.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_spiders/spiders/Chemistry.py" beforeDir="false" afterPath="$PROJECT_DIR$/project_spiders/spiders/Chemistry.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_spiders/spiders/EE.py" beforeDir="false" afterPath="$PROJECT_DIR$/project_spiders/spiders/EE.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_spiders/spiders/Ess.py" beforeDir="false" afterPath="$PROJECT_DIR$/project_spiders/spiders/ESS.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_spiders/spiders/Math.py" beforeDir="false" afterPath="$PROJECT_DIR$/project_spiders/spiders/Math.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_spiders/spiders/Mse.py" beforeDir="false" afterPath="$PROJECT_DIR$/project_spiders/spiders/MSE.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_spiders/spiders/Physics.py" beforeDir="false" afterPath="$PROJECT_DIR$/project_spiders/spiders/Physics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_spiders/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/project_spiders/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project_spiders/spiders/Time_unite.py" beforeDir="false" afterPath="$PROJECT_DIR$/project_spiders/spiders/Time_unite.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/运行.bat" beforeDir="false" afterPath="$PROJECT_DIR$/运行.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run.bat" beforeDir="false" afterPath="$PROJECT_DIR$/run.bat" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,11 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/project_spiders/spiders/ESE.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/project_spiders/spiders/MED.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="21" column="50" lean-forward="true" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="50" />
+            <state relative-caret-position="330">
+              <caret line="33" column="64" lean-forward="true" selection-start-line="33" selection-start-column="64" selection-end-line="33" selection-end-column="64" />
               <folding>
                 <element signature="e#24#37#0" expanded="true" />
               </folding>
@@ -36,14 +33,24 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="-95">
-                <caret line="16" column="7" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
-              </first_editor>
-              <second_editor />
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MED.csv">
+          <provider selected="true" editor-type-id="csv-text-editor">
+            <state relative-caret-position="371">
+              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+            </state>
+          </provider>
+          <provider editor-type-id="csv-table-editor">
+            <state showInfoPanel="true" fixedHeaders="false" rowLines="3">
+              <column index="0" width="100" />
+              <column index="1" width="100" />
+              <column index="2" width="100" />
+              <column index="3" width="100" />
+              <column index="4" width="100" />
+              <column index="5" width="100" />
+              <column index="6" width="100" />
+              <column index="7" width="100" />
+              <column index="8" width="100" />
             </state>
           </provider>
         </entry>
@@ -65,6 +72,7 @@
       <find>月.*?号</find>
       <find>''</find>
       <find>None</find>
+      <find>robot</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -76,7 +84,6 @@
         <option value="$PROJECT_DIR$/project_spiders/spiders/Headers.py" />
         <option value="$PROJECT_DIR$/project_spiders/items.py" />
         <option value="$PROJECT_DIR$/project_spiders/middlewares.py" />
-        <option value="$PROJECT_DIR$/project_spiders/settings.py" />
         <option value="$PROJECT_DIR$/Ess.csv" />
         <option value="$PROJECT_DIR$/Chemistry.csv" />
         <option value="$PROJECT_DIR$/EE.csv" />
@@ -89,17 +96,28 @@
         <option value="$PROJECT_DIR$/project_spiders/spiders/Math.py" />
         <option value="$PROJECT_DIR$/project_spiders/spiders/Mse.py" />
         <option value="$PROJECT_DIR$/project_spiders/spiders/Physics.py" />
-        <option value="$PROJECT_DIR$/project_spiders/spiders/Time_unite.py" />
         <option value="$PROJECT_DIR$/project_spiders/spiders/ESE.py" />
-        <option value="$PROJECT_DIR$/project_spiders/pipelines.py" />
         <option value="$PROJECT_DIR$/运行.bat" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/project_spiders/spiders/MAE.py" />
+        <option value="$PROJECT_DIR$/project_spiders/pipelines.py" />
+        <option value="$PROJECT_DIR$/project_spiders/spiders/MEE.py" />
+        <option value="$PROJECT_DIR$/project_spiders/spiders/BME.py" />
+        <option value="$PROJECT_DIR$/BIO.csv" />
+        <option value="$PROJECT_DIR$/project_spiders/spiders/BIO.py" />
+        <option value="$PROJECT_DIR$/project_spiders/settings.py" />
+        <option value="$PROJECT_DIR$/FIN.csv" />
+        <option value="$PROJECT_DIR$/project_spiders/spiders/FIN.py" />
+        <option value="$PROJECT_DIR$/run.bat" />
+        <option value="$PROJECT_DIR$/project_spiders/spiders/Time_unite.py" />
+        <option value="$PROJECT_DIR$/MED.csv" />
+        <option value="$PROJECT_DIR$/project_spiders/spiders/MED.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="462" />
-    <option name="y" value="39" />
+    <option name="x" value="382" />
+    <option name="y" value="79" />
     <option name="width" value="1299" />
     <option name="height" value="956" />
   </component>
@@ -168,7 +186,8 @@
       <workItem from="1555065369869" duration="12321000" />
       <workItem from="1555078339285" duration="2968000" />
       <workItem from="1555231718516" duration="2232000" />
-      <workItem from="1556174864119" duration="5800000" />
+      <workItem from="1556174864119" duration="5989000" />
+      <workItem from="1556775228324" duration="15361000" />
     </task>
     <task id="LOCAL-00001" summary="Refactory by scrapy">
       <created>1555235545519</created>
@@ -184,17 +203,31 @@
       <option name="project" value="LOCAL" />
       <updated>1555236099160</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="详见更新日志">
+      <created>1556180727767</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1556180727767</updated>
+    </task>
+    <task id="LOCAL-00004" summary="详见更新日志">
+      <created>1556180806820</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1556180806820</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46276000" />
+    <option name="totallyTimeSpent" value="61826000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="462" y="39" width="1299" height="956" extended-state="0" />
+    <frame x="382" y="79" width="1299" height="956" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2534302" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2574657" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -208,7 +241,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32846716" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32603407" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -222,7 +255,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Refactory by scrapy" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactory by scrapy" />
+    <MESSAGE value="详见更新日志" />
+    <option name="LAST_COMMIT_MESSAGE" value="详见更新日志" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/project_spiders/__init__.py">
@@ -241,15 +275,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Math.txt" />
-    <entry file="file://$PROJECT_DIR$/project_spiders/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="72" selection-start-line="8" selection-start-column="72" selection-end-line="8" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Math.csv">
-      <provider editor-type-id="text-editor" />
       <provider selected="true" editor-type-id="csv-text-editor">
         <state relative-caret-position="184">
           <caret line="148" column="12" selection-start-line="148" selection-start-column="12" selection-end-line="148" selection-end-column="12" />
@@ -258,6 +284,7 @@
       <provider editor-type-id="csv-table-editor">
         <state showInfoPanel="false" fixedHeaders="false" rowLines="3" />
       </provider>
+      <provider editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Mse.csv">
       <provider selected="true" editor-type-id="csv-text-editor">
@@ -369,13 +396,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Math.csv.bak">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="82" selection-start-line="7" selection-start-column="82" selection-end-line="7" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Math.csv.bak" />
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="428">
@@ -446,16 +467,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/project_spiders/spiders/ESS.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="22" column="42" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
-          <folding>
-            <element signature="e#24#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/project_spiders/spiders/Physics.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -473,26 +484,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/project_spiders/spiders/Math.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="25" column="23" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
-          <folding>
-            <element signature="e#24#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project_spiders/spiders/MSE.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="10" column="14" lean-forward="true" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
-          <folding>
-            <element signature="e#24#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/project_spiders/spiders/Ocean.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="138">
@@ -500,13 +491,6 @@
           <folding>
             <element signature="e#24#37#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project_spiders/pipelines.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="39" column="35" lean-forward="true" selection-start-line="39" selection-start-column="35" selection-end-line="39" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -520,13 +504,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/project_spiders/spiders/Time_unite.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="80" column="35" lean-forward="true" selection-start-line="80" selection-start-column="35" selection-end-line="80" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ESE.csv">
       <provider selected="true" editor-type-id="csv-text-editor">
         <state relative-caret-position="1729">
@@ -537,30 +514,236 @@
         <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/运行.bat">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="16" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="95">
+            <caret line="5" column="23" lean-forward="true" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/project_spiders/spiders/ESE.py">
+    <entry file="file://$PROJECT_DIR$/project_spiders/spiders/ESS.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="21" column="50" lean-forward="true" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="50" />
+        <state relative-caret-position="314">
+          <caret line="22" column="42" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
           <folding>
             <element signature="e#24#37#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="-95">
-            <caret line="16" column="7" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
-          </first_editor>
-          <second_editor />
+    <entry file="file://$PROJECT_DIR$/MAE.csv">
+      <provider editor-type-id="csv-text-editor" />
+      <provider selected="true" editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3">
+          <column index="0" width="100" />
+          <column index="1" width="100" />
+          <column index="2" width="100" />
+          <column index="3" width="100" />
+          <column index="4" width="100" />
+          <column index="5" width="100" />
+          <column index="6" width="100" />
+          <column index="7" width="100" />
+          <column index="8" width="100" />
+          <column index="9" width="100" />
+          <column index="10" width="100" />
+          <column index="11" width="100" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project_spiders/spiders/Math.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="20" column="33" selection-end-line="41" />
+          <folding>
+            <element signature="e#24#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project_spiders/spiders/MSE.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="18" column="39" lean-forward="true" selection-end-line="41" />
+          <folding>
+            <element signature="e#24#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project_spiders/spiders/ESE.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5">
+          <caret line="10" column="14" lean-forward="true" selection-end-line="30" />
+          <folding>
+            <element signature="e#24#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project_spiders/pipelines.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="27" column="34" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BME.csv">
+      <provider editor-type-id="csv-text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="75" lean-forward="true" selection-start-line="5" selection-start-column="75" selection-end-line="5" selection-end-column="75" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3">
+          <column index="0" width="100" />
+          <column index="1" width="100" />
+          <column index="2" width="100" />
+          <column index="3" width="100" />
+          <column index="4" width="100" />
+          <column index="5" width="100" />
+          <column index="6" width="100" />
+          <column index="7" width="100" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project_spiders/spiders/BME.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="23" column="34" selection-end-line="40" />
+          <folding>
+            <element signature="e#24#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BIO.csv">
+      <provider editor-type-id="csv-text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3">
+          <column index="0" width="100" />
+          <column index="1" width="100" />
+          <column index="2" width="100" />
+          <column index="3" width="100" />
+          <column index="4" width="100" />
+          <column index="5" width="100" />
+          <column index="6" width="100" />
+          <column index="7" width="100" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project_spiders/spiders/BIO.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="385">
+          <caret line="31" column="43" lean-forward="true" selection-start-line="31" selection-start-column="43" selection-end-line="31" selection-end-column="43" />
+          <folding>
+            <element signature="e#24#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project_spiders/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="35" column="22" selection-start-line="35" selection-start-column="22" selection-end-line="35" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FIN.csv">
+      <provider editor-type-id="csv-text-editor" />
+      <provider selected="true" editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3">
+          <column index="0" width="100" />
+          <column index="1" width="100" />
+          <column index="2" width="100" />
+          <column index="3" width="100" />
+          <column index="4" width="100" />
+          <column index="5" width="100" />
+          <column index="6" width="100" />
+          <column index="7" width="100" />
+          <column index="8" width="100" />
+          <column index="9" width="100" />
+          <column index="10" width="100" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run.bat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" column="16" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project_spiders/spiders/FIN.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="26" column="16" lean-forward="true" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
+          <folding>
+            <element signature="e#24#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project_spiders/spiders/MAE.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="26" column="114" lean-forward="true" selection-start-line="21" selection-start-column="12" selection-end-line="26" selection-end-column="114" />
+          <folding>
+            <element signature="e#24#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project_spiders/spiders/Time_unite.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="385">
+          <caret line="163" column="45" lean-forward="true" selection-start-line="163" selection-start-column="45" selection-end-line="163" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project_spiders/spiders/MEE.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="589">
+          <caret line="31" column="52" selection-start-line="31" selection-start-column="52" selection-end-line="31" selection-end-column="52" />
+          <folding>
+            <element signature="e#24#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MED.csv">
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state relative-caret-position="371">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3">
+          <column index="0" width="100" />
+          <column index="1" width="100" />
+          <column index="2" width="100" />
+          <column index="3" width="100" />
+          <column index="4" width="100" />
+          <column index="5" width="100" />
+          <column index="6" width="100" />
+          <column index="7" width="100" />
+          <column index="8" width="100" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project_spiders/spiders/MED.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="33" column="64" lean-forward="true" selection-start-line="33" selection-start-column="64" selection-end-line="33" selection-end-column="64" />
+          <folding>
+            <element signature="e#24#37#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
