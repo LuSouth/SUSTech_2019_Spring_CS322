@@ -5,7 +5,7 @@ import project_spiders.spiders.Time_unite as Tu
 
 
 class MseSpider(scrapy.Spider):
-    name = 'Mse'
+    name = 'MSE'
     allowed_domains = ['sustc.edu.cn']
     url = 'http://mse.sustc.edu.cn/cn/lecture/index/page/'
     offset = 1
