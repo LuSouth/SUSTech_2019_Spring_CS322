@@ -5,7 +5,7 @@ import project_spiders.spiders.Time_unite as Tu
 
 
 class EssSpider(scrapy.Spider):
-    name = 'Ess'
+    name = 'ESS'
     allowed_domains = ['sustech.edu.cn']
     url = 'http://ess.sustech.edu.cn/New-index-id-8-p-'
     offset = 1
